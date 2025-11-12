@@ -80,9 +80,9 @@
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <svg class="h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
-                    </svg>
+                    <div class="h-10 w-10 me-3 flex items-center justify-center border-r-2 border-blue-700">
+                        <img src="" alt="شعار وصال" class="h-8 w-8">
+                        </div>
                     <div class="me-3">
                         <h1 class="text-xl font-bold text-blue-700">وِصال</h1>
                         <p class="text-xs text-gray-500">حاضنة المدن الصحية في عسير</p>
@@ -201,7 +201,7 @@
                 <p class="text-lg text-gray-600 mt-2">انقر على محافظة لعرض بيانات الأولويات والإحصائيات المقدمة من "مرسام".</p>
             </div>
             
-            <div class="map-container relative bg-gray-50 rounded-2xl shadow-xl overflow-hidden mb-8 flex justify-center items-center"> 
+            <div class="map-container relative bg-gray-50 rounded-2xl shadow-xl overflow-hidden mb-8 flex justify-center items-center">  
                 <svg id="asir-map-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 940.3 1018.4" style="enable-background:new 0 0 940.3 1018.4;" xml:space="preserve" class="w-full h-full p-4">
                     <polygon id="tab-575" title="محافظة بلقرن" class="st1 area need-medium" data-region="بلقرن" data-need="medium" points="192.4,455.3 188.3,453.5 185.2,445.2 165,440.5 168.1,426.1 160.6,422.7 163.3,415.7 154.4,410.8 159.3,395.4 155.2,355.8 155.8,317.4 165.3,317.2 168.5,293.9 205.1,293.1 200,346.2 215.7,345.9 250.9,325.1 263.9,366.9 231.6,394.3 263.3,400.7 256.3,425.8 245.9,432.9 237.8,437.5 222.2,437.8 222.1,446.2 213.3,452.9 209.3,464.4 200.1,472.3 "></polygon> 
                     
@@ -256,7 +256,7 @@
                         <polygon points="576.864,956.09 554.591,967.551 552.818,965.304 546.373,967.335 529.722,948.954 529.722,942.683 539.237,938.358 549.833,942.899 551.563,940.736 554.374,940.736 557.186,939.655 575.35,945.494"></polygon>
                     </g>
                     
-                    </svg>
+                </svg>
             </div>
             
             <div id="map-details" class="grid grid-cols-1 gap-6 mb-8 active">
@@ -1144,7 +1144,7 @@
             navigateTo('home-section');
             
             // تعيين تسميات المناطق عند التحميل
-            setRegionLabels(); 
+            setRegionLabels();  
 
             // تعيين محافظة أبها كمحافظة افتراضية عند التحميل
             const initialRegion = 'أبها';  
@@ -1156,4 +1156,3 @@
     </script>
 </body>
 </html>
-

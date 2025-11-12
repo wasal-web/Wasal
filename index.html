@@ -10,6 +10,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // الألوان الأساسية من الشعار
+                        'wesal-green-dark': '#037945', // الأخضر الداكن (لوِصال)
+                        'wesal-blue': '#2987fa', // الأزرق الأساسي
+                        'wesal-orange': '#d37f18', // البرتقالي/البني
+                        'wesal-green-light': '#04ddbc', // الأخضر الفاتح/السماوي
+                        'wesal-red': '#ea0057', // الأحمر الفاقع
+                        'wesal-grey': '#707875', // الرمادي/الرصاصي
+                        'wesal-gold': '#8f8c50', // الذهبي/الخردلي
+                        
+                        // تباينات الألوان (باستخدام 50 و 100 ليتوافق مع الخلفيات)
+                        'wesal-blue-50': '#eaf4ff',
+                        'wesal-blue-100': '#d4e7ff',
+                        'wesal-green-light-50': '#e6fffb',
+                        'wesal-red-50': '#fff0f4',
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         /* إعداد الخط الافتراضي */
         body {
@@ -34,7 +59,7 @@
 
         /* الألوان الأساسية للمحافظات (المستخرجة من الكود الأصلي) */
         .st1, .st2, .st3, .st4, .st5, .st6, .st7, .st8, .st9, .st10, .st11, .st12, .st13, .st15, .st17, .st18, .st19, .st14, .st21 {
-            fill: #C2E0D3; /* لون أخضر/رمادي فاتح (لون المحافظات الافتراضي) - تم دمج الأنماط المتباينة */
+            fill: #C2E0D3; /* لون أخضر/رمادي فاتح (لون المحافظات الافتراضي) */
             stroke: #000000;
             stroke-width: 0.5;
             transition: fill 0.3s ease, stroke 0.3s ease;
@@ -48,20 +73,20 @@
             cursor: pointer;
         }
 
-        /* تلوين التحديد: عند النقر (لضمان وضوح التفاعل) */
+        /* تلوين التحديد: عند النقر */
         .area.selected {
-            fill: #1d4ed8 !important; /* لون التحديد - أزرق زاهي من Tailwind */
+            fill: #2987fa !important; /* لون التحديد - الأزرق الجديد */
             opacity: 0.8 !important;
             stroke: #fff !important;
             stroke-width: 2.5 !important;
         }
 
-        /* تلوين الـ Fill بناءً على مستوى الاحتياج (سيتم تطبيقه في JS) */
-        .need-high { fill: #dc2626 !important; }  /* Red-600 */
-        .need-medium { fill: #f59e0b !important; } /* Amber-500 */
-        .need-low { fill: #10b981 !important; }    /* Emerald-500 */
+        /* تلوين الـ Fill بناءً على مستوى الاحتياج (ألوان الشعار الجديدة) */
+        .need-high { fill: #ea0057 !important; } /* الأحمر الجديد */
+        .need-medium { fill: #d37f18 !important; } /* البرتقالي/البني الجديد */
+        .need-low { fill: #04ddbc !important; } /* الأخضر الفاتح الجديد */
 
-        /* أنماط التسميات الجديدة والمعدلة - ستقوم JS بتعيين X و Y و Font-size */
+        /* أنماط التسميات الجديدة والمعدلة */
         .region-label {
             pointer-events: none; /* لضمان أن النقر يذهب إلى البوليغون وليس النص */
             fill: #1f2937; /* لون غامق للنص */
@@ -78,29 +103,29 @@
 
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center h-max">
                 <div class="flex items-center">
-                    <div class="h-20 w-20 me-3 flex items-center justify-center border-r-2 border-blue-700">
+                    <div class="h-20 w-20 me-3 flex items-center justify-center border-r-2 border-wesal-blue">
                         <img src="شعار وصال.png" alt="شعار وصال" class="h-15 w-15">
                         </div>
                     <div class="me-3">
-                        <h1 class="text-xl font-bold text-blue-700">وِصال</h1>
+                        <h1 class="text-xl font-bold text-wesal-green-dark">وِصال</h1>
                         <p class="text-xs text-gray-500">حاضنة المدن الصحية في عسير</p>
                     </div>
                 </div>
                 
                 <div class="hidden md:flex md:items-center md:space-x-8 rtl:space-x-reverse">
-                    <a href="#" class="nav-link text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200 active-link" data-target="home-section">الرئيسية</a>
-                    <a href="#" class="nav-link text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200" data-target="projects-section">استعراض المشاريع</a>
-                    <a href="#" class="nav-link text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200" data-target="map-section">خريطة الأثر</a>
-                    <a href="#" class="nav-link text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200" data-target="donor-portal-section">بوابة المانحين</a>
-                    <a href="#" class="nav-link text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200" data-target="initiative-portal-section">قدم مبادرتك</a>
-                    <a href="#" class="nav-link text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200" data-target="dashboard-section">لوحة التحكم</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-wesal-blue font-medium transition-colors duration-200 active-link" data-target="home-section">الرئيسية</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-wesal-blue font-medium transition-colors duration-200" data-target="projects-section">استعراض المشاريع</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-wesal-blue font-medium transition-colors duration-200" data-target="map-section">خريطة الأثر</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-wesal-blue font-medium transition-colors duration-200" data-target="donor-portal-section">بوابة المانحين</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-wesal-blue font-medium transition-colors duration-200" data-target="initiative-portal-section">قدم مبادرتك</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-wesal-blue font-medium transition-colors duration-200" data-target="dashboard-section">لوحة التحكم</a>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
-                    <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300 transform active:scale-95">تسجيل الدخول</a>
-                    <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow transition duration-300 transform active:scale-95">سجل كداعم</a>
+                    <a href="#" class="text-gray-600 hover:text-wesal-blue transition duration-300 transform active:scale-95">تسجيل الدخول</a>
+                    <a href="#" class="bg-wesal-blue hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow transition duration-300 transform active:scale-95">سجل كداعم</a>
                 </div>
                 
                 <div class="md:hidden flex items-center">
@@ -114,14 +139,14 @@
         </nav>
         
         <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
-            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600" data-target="home-section">الرئيسية</a>
-            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600" data-target="projects-section">استعراض المشاريع</a>
-            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600" data-target="map-section">خريطة الأثر</a>
-            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600" data-target="donor-portal-section">بوابة المانحين</a>
-            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600" data-target="initiative-portal-section">قدم مبادرتك</a>
-            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600" data-target="dashboard-section">لوحة التحكم</a>
+            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-wesal-blue" data-target="home-section">الرئيسية</a>
+            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-wesal-blue" data-target="projects-section">استعراض المشاريع</a>
+            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-wesal-blue" data-target="map-section">خريطة الأثر</a>
+            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-wesal-blue" data-target="donor-portal-section">بوابة المانحين</a>
+            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-wesal-blue" data-target="initiative-portal-section">قدم مبادرتك</a>
+            <a href="#" class="nav-link block px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-wesal-blue" data-target="dashboard-section">لوحة التحكم</a>
             <div class="border-t border-gray-200 px-4 py-3 space-y-2">
-                <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow transition duration-300 transform active:scale-95">سجل كداعم</a>
+                <a href="#" class="block w-full text-center bg-wesal-blue hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow transition duration-300 transform active:scale-95">سجل كداعم</a>
                 <a href="#" class="block w-full text-center text-gray-600 hover:bg-gray-100 transition duration-300 transform active:scale-95">تسجيل الدخول</a>
             </div>
         </div>
@@ -130,14 +155,14 @@
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <section id="home-section" class="section active">
-            <div class="bg-blue-600 rounded-2xl shadow-xl p-8 md:p-12 text-white overflow-hidden relative mb-12">
+            <div class="bg-wesal-blue rounded-2xl shadow-xl p-8 md:p-12 text-white overflow-hidden relative mb-12">
                 <div class="relative z-10 md:w-2/3">
                     <h1 class="text-3xl md:text-5xl font-bold mb-4">وِصال: حاضنة رقمية لتمويل الأثر المستدام في عسير</h1>
                     <p class="text-lg md:text-xl text-blue-100 mb-8">
                         منصة تنموية وإنسانية أطلقها مكتب برنامج المدن الصحية بإمارة عسير. نهدف لربط المانحين بالمشاريع ذات الأثر القابل للقياس، بما يدعم العدالة الاجتماعية وجودة الحياة للفئات الضعيفة.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <button class="nav-link bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-100 transition duration-300 transform active:scale-95 flex items-center justify-center" data-target="projects-section">
+                        <button class="nav-link bg-white text-wesal-green-dark font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-100 transition duration-300 transform active:scale-95 flex items-center justify-center" data-target="projects-section">
                             <svg class="w-5 h-5 me-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                             👁 استعراض المشاريع
                         </button>
@@ -147,7 +172,7 @@
                         </button>
                     </div>
                 </div>
-                <svg class="absolute -start-10 -bottom-16 w-64 h-64 text-blue-500 opacity-20 transform scale-150" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
+                <svg class="absolute -start-10 -bottom-16 w-64 h-64 text-wesal-blue opacity-20 transform scale-150" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.092 1.21-.138 2.43-.138 3.662 0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.092-1.21.138-2.43.138-3.662z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
@@ -155,19 +180,19 @@
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
                 <div class="bg-white p-6 rounded-2xl shadow-sm text-center">
-                    <div class="text-4xl font-bold text-blue-600 mb-2">100+</div>
+                    <div class="text-4xl font-bold text-wesal-blue mb-2">100+</div>
                     <div class="text-gray-600">مانح/مستثمر مسجّل (سنويًا)</div>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-sm text-center">
-                    <div class="text-4xl font-bold text-blue-600 mb-2">150+</div>
+                    <div class="text-4xl font-bold text-wesal-blue mb-2">150+</div>
                     <div class="text-gray-600">مشروع تنموي منفّذ (سنويًا)</div>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-sm text-center">
-                    <div class="text-4xl font-bold text-blue-600 mb-2">10M+</div>
+                    <div class="text-4xl font-bold text-wesal-blue mb-2">10M+</div>
                     <div class="text-gray-600">حجم التمويل المستهدف (ريال)</div>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-sm text-center">
-                    <div class="text-4xl font-bold text-blue-600 mb-2">2.5+</div>
+                    <div class="text-4xl font-bold text-wesal-blue mb-2">2.5+</div>
                     <div class="text-gray-600">متوسط العائد الاجتماعي (SROI)</div>
                 </div>
             </div>
@@ -175,20 +200,20 @@
             <div class="py-12 bg-white rounded-2xl shadow-lg px-8 mb-12">
                 <h2 class="text-3xl font-bold text-center mb-8">التكامل الرقمي في منظومة المدن الصحية (EMMR)</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                    <div class="p-6 bg-blue-50 rounded-lg border-b-4 border-blue-400">
-                        <h3 class="text-lg font-bold text-blue-700 mb-2">مرسام (Marsam): خرائط الأولوية</h3>
+                    <div class="p-6 bg-wesal-blue-50 rounded-lg border-b-4 border-wesal-blue">
+                        <h3 class="text-lg font-bold text-wesal-blue">مرسام (Marsam): خرائط الأولوية</h3>
                         <p class="text-sm text-gray-600">يزوّد "وصال" ببيانات المواقع والأحياء ذات الأولوية القصوى للتدخل السكاني والصحي.</p>
                     </div>
-                    <div class="p-6 bg-blue-50 rounded-lg border-b-4 border-green-400">
-                        <h3 class="text-lg font-bold text-green-700 mb-2">تكافل (Takaful): قاعدة المستفيدين</h3>
+                    <div class="p-6 bg-wesal-green-light-50 rounded-lg border-b-4 border-wesal-green-light">
+                        <h3 class="text-lg font-bold text-wesal-green-dark">تكافل (Takaful): قاعدة المستفيدين</h3>
                         <p class="text-sm text-gray-600">يُغذي "وصال" ببيانات الحالات الإنسانية والمستفيدين المؤهلين لضمان المصداقية.</p>
                     </div>
-                    <div class="p-6 bg-blue-50 rounded-lg border-b-4 border-purple-400">
+                    <div class="p-6 bg-purple-50 rounded-lg border-b-4 border-purple-400">
                         <h3 class="text-lg font-bold text-purple-700 mb-2">وِصال (Wesal): حاضنة التمويل</h3>
                         <p class="text-sm text-gray-600">المنصة المركزية لتنفيذ التدخلات وإدارة المشاريع وربطها بالمانحين والمستثمرين.</p>
                     </div>
-                    <div class="p-6 bg-blue-50 rounded-lg border-b-4 border-red-400">
-                        <h3 class="text-lg font-bold text-red-700 mb-2">EMMR: القياس والرصد الذكي</h3>
+                    <div class="p-6 bg-wesal-red-50 rounded-lg border-b-4 border-wesal-red">
+                        <h3 class="text-lg font-bold text-wesal-red">EMMR: القياس والرصد الذكي</h3>
                         <p class="text-sm text-gray-600">نظام القياس والرصد للتحقق من الأثر الاجتماعي والاقتصادي ورفع تقارير الأداء.</p>
                     </div>
                 </div>
@@ -260,24 +285,24 @@
             </div>
             
             <div id="map-details" class="grid grid-cols-1 gap-6 mb-8 active">
-                <div id="map-region-data-card" class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-blue-600 flex flex-col justify-between">
-                    <h3 id="map-region-name" class="text-xl font-bold mb-4 text-blue-700">انقر على محافظة في الخريطة لعرض بيانات الأثر فيها</h3>
+                <div id="map-region-data-card" class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-wesal-blue flex flex-col justify-between">
+                    <h3 id="map-region-name" class="text-xl font-bold mb-4 text-wesal-blue">انقر على محافظة في الخريطة لعرض بيانات الأثر فيها</h3>
                     <div id="region-stats" class="grid grid-cols-2 sm:grid-cols-4 gap-4 hidden">
                         </div>
                     <div id="region-donors" class="mt-4 hidden">
                         <h4 class="text-sm font-semibold text-gray-700 border-t pt-3 mt-3">أبرز الداعمين في المنطقة:</h4>
                         <div id="data-donors" class="space-y-2 mt-2"></div>
                     </div>
-                    <button class="w-full mt-6 bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform active:scale-95 hidden" id="support-region-btn">
+                    <button class="w-full mt-6 bg-wesal-blue text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform active:scale-95 hidden" id="support-region-btn">
                         ادعم مشاريع هذه المحافظة
                     </button>
                 </div>
             </div>
             
             <div class="flex flex-wrap justify-center gap-6 mt-8 p-4 bg-white rounded-xl shadow-inner text-sm">
-                <div class="flex items-center"><span class="w-4 h-4 rounded-full bg-red-600 me-2"></span> احتياج عالٍ (أولوية قصوى)</div>
-                <div class="flex items-center"><span class="w-4 h-4 rounded-full bg-amber-500 me-2"></span> احتياج متوسط (أولوية ثانوية)</div>
-                <div class="flex items-center"><span class="w-4 h-4 rounded-full bg-green-500 me-2"></span> احتياج منخفض (اكتفاء ذاتي)</div>
+                <div class="flex items-center"><span class="w-4 h-4 rounded-full bg-wesal-red me-2"></span> احتياج عالٍ (أولوية قصوى)</div>
+                <div class="flex items-center"><span class="w-4 h-4 rounded-full bg-wesal-orange me-2"></span> احتياج متوسط (أولوية ثانوية)</div>
+                <div class="flex items-center"><span class="w-4 h-4 rounded-full bg-wesal-green-light me-2"></span> احتياج منخفض (اكتفاء ذاتي)</div>
             </div>
         </section>
 
@@ -285,19 +310,19 @@
             <h2 class="text-3xl font-bold mb-8">المشاريع الجاهزة للدعم والتمويل</h2>
             
             <div class="bg-white p-4 rounded-lg shadow-sm mb-8 grid grid-cols-2 md:grid-cols-5 gap-4">
-                <input type="text" placeholder="ابحث باسم المشروع..." class="col-span-2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <select class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" placeholder="ابحث باسم المشروع..." class="col-span-2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
+                <select class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                     <option value="">كل أنواع التدخل</option>
                     <option value="housing">تأهيل سكني</option>
                     <option value="education">دعم تعليمي</option>
                     <option value="health">رعاية صحية</option>
                     <option value="empowerment">تمكين اقتصادي</option>
                     <option value="social">دعم اجتماعي</option>
-                    <option value="urban">اسحاح حضري</option>
+                    <option value="urban">اصحاح حضري</option>
                     <option value="enhancing">تجويد خدمات</option>
                     <option value="life">جودة حياة</option>
                 </select>
-                <select class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <select class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                     <option value="">كل الفئات</option>
                     <option value="elderly">كبار السن</option>
                     <option value="families">أسر منتجة</option>
@@ -311,7 +336,7 @@
                     <option value="literacy">أميين</option>
                     <option value="families">الأسر ذوي الدخل المحدود</option>
                 </select>
-                <select class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <select class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                     <option value="">الحالة</option>
                     <option value="funding">بانتظار التمويل</option>
                     <option value="progress">قيد التنفيذ</option>
@@ -322,7 +347,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transform hover:scale-[1.02] transition duration-300">
                     <div class="p-6">
-                        <span class="text-sm text-blue-600 bg-blue-100 px-3 py-1 rounded-full font-medium">تأهيل سكني</span>
+                        <span class="text-sm text-wesal-blue bg-wesal-blue-50 px-3 py-1 rounded-full font-medium">تأهيل سكني</span>
                         <h3 class="text-xl font-bold my-3">تأهيل منازل كبار السن</h3>
                         <p class="text-gray-600 mb-4 text-sm">توفير بيئة سكنية آمنة ومناسبة لكبار السن عبر ترميم وتحسين منازلهم.</p>
                         <div class="text-2xl font-bold text-gray-800">25,000 <span class="text-sm font-normal">ريال</span></div>
@@ -330,16 +355,16 @@
                     </div>
                     <div class="mt-auto p-6 bg-gray-50">
                         <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
-                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
+                            <div class="bg-wesal-blue h-2.5 rounded-full" style="width: 45%"></div>
                         </div>
                         <div class="text-xs text-gray-500 mb-4">تم إنجاز 45%</div>
-                        <button class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300 transform active:scale-95 open-support-modal" data-project-name="تأهيل منازل كبار السن">دعم المشروع</button>
+                        <button class="w-full bg-wesal-blue text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300 transform active:scale-95 open-support-modal" data-project-name="تأهيل منازل كبار السن">دعم المشروع</button>
                     </div>
                 </div>
                 
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transform hover:scale-[1.02] transition duration-300">
                     <div class="p-6">
-                        <span class="text-sm text-green-600 bg-green-100 px-3 py-1 rounded-full font-medium">تمكين اقتصادي</span>
+                        <span class="text-sm text-wesal-green-dark bg-wesal-green-light-50 px-3 py-1 rounded-full font-medium">تمكين اقتصادي</span>
                         <h3 class="text-xl font-bold my-3">تدريب الأسر المنتجة</h3>
                         <p class="text-gray-600 mb-4 text-sm">برامج تدريب حرفي وإداري لتمكين الأسر المنتجة من بدء مشاريعهم الخاصة.</p>
                         <div class="text-2xl font-bold text-gray-800">12,500 <span class="text-sm font-normal">ريال</span></div>
@@ -347,10 +372,10 @@
                     </div>
                     <div class="mt-auto p-6 bg-gray-50">
                         <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
-                            <div class="bg-green-600 h-2.5 rounded-full" style="width: 10%"></div>
+                            <div class="bg-wesal-green-light h-2.5 rounded-full" style="width: 10%"></div>
                         </div>
                         <div class="text-xs text-gray-500 mb-4">تم إنجاز 10%</div>
-                        <button class="w-full bg-green-600 text-white font-semibold py-3 rounded-lg hover:bg-green-700 transition duration-300 transform active:scale-95 open-support-modal" data-project-name="تدريب الأسر المنتجة">دعم المشروع</button>
+                        <button class="w-full bg-wesal-green-light text-white font-semibold py-3 rounded-lg hover:bg-green-700 transition duration-300 transform active:scale-95 open-support-modal" data-project-name="تدريب الأسر المنتجة">دعم المشروع</button>
                     </div>
                 </div>
 
@@ -373,7 +398,7 @@
                 
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transform hover:scale-[1.02] transition duration-300">
                     <div class="p-6">
-                        <span class="text-sm text-red-600 bg-red-100 px-3 py-1 rounded-full font-medium">رعاية صحية</span>
+                        <span class="text-sm text-wesal-red bg-wesal-red-50 px-3 py-1 rounded-full font-medium">رعاية صحية</span>
                         <h3 class="text-xl font-bold my-3">قوافل طبية للأحياء</h3>
                         <p class="text-gray-600 mb-4 text-sm">تسيير قوافل طبية متنقلة لتقديم الكشوفات الأولية والأدوية في الأحياء المستهدفة.</p>
                         <div class="text-2xl font-bold text-gray-800">75,000 <span class="text-sm font-normal">ريال</span></div>
@@ -381,10 +406,10 @@
                     </div>
                     <div class="mt-auto p-6 bg-gray-50">
                         <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
-                            <div class="bg-red-600 h-2.5 rounded-full" style="width: 80%"></div>
+                            <div class="bg-wesal-red h-2.5 rounded-full" style="width: 80%"></div>
                         </div>
                         <div class="text-xs text-gray-500 mb-4">تم إنجاز 80%</div>
-                        <button class="w-full bg-red-600 text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition duration-300 transform active:scale-95 open-support-modal" data-project-name="قوافل طبية للأحياء">دعم المشروع</button>
+                        <button class="w-full bg-wesal-red text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition duration-300 transform active:scale-95 open-support-modal" data-project-name="قوافل طبية للأحياء">دعم المشروع</button>
                     </div>
                 </div>
 
@@ -424,7 +449,7 @@
 
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transform hover:scale-[1.02] transition duration-300">
                     <div class="p-6">
-                        <span class="text-sm text-yellow-600 bg-yellow-100 px-3 py-1 rounded-full font-medium">إغاثة وسكن</span>
+                        <span class="text-sm text-wesal-orange bg-yellow-100 px-3 py-1 rounded-full font-medium">إغاثة وسكن</span>
                         <h3 class="text-xl font-bold my-3">دعم الأسر المستأجرة</h3>
                         <p class="text-gray-600 mb-4 text-sm">تغطية الإيجارات المتأخرة للأسر المتعثرة في مناطق محددة.</p>
                         <div class="text-2xl font-bold text-gray-800">40,000 <span class="text-sm font-normal">ريال</span></div>
@@ -432,10 +457,10 @@
                     </div>
                     <div class="mt-auto p-6 bg-gray-50">
                         <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
-                            <div class="bg-yellow-600 h-2.5 rounded-full" style="width: 90%"></div>
+                            <div class="bg-wesal-orange h-2.5 rounded-full" style="width: 90%"></div>
                         </div>
                         <div class="text-xs text-gray-500 mb-4">تم إنجاز 90% (قرب الاكتمال)</div>
-                        <button class="w-full bg-yellow-600 text-white font-semibold py-3 rounded-lg hover:bg-yellow-700 transition duration-300 transform active:scale-95 open-support-modal" data-project-name="دعم الأسر المستأجرة">دعم المشروع</button>
+                        <button class="w-full bg-wesal-orange text-white font-semibold py-3 rounded-lg hover:bg-yellow-700 transition duration-300 transform active:scale-95 open-support-modal" data-project-name="دعم الأسر المستأجرة">دعم المشروع</button>
                     </div>
                 </div>
 
@@ -452,11 +477,11 @@
                         <h3 class="text-xl font-semibold">تسجيل بيانات الجهة</h3>
                         <div>
                             <label for="org-name" class="block text-sm font-medium text-gray-700">اسم الجهة / التاجر</label>
-                            <input type="text" id="org-name" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="text" id="org-name" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                         </div>
                         <div>
                             <label for="org-type" class="block text-sm font-medium text-gray-700">نوع الجهة</label>
-                            <select id="org-type" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <select id="org-type" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                                 <option>شركة / قطاع خاص</option>
                                 <option>مؤسسة مانحة / وقف</option>
                                 <option>فاعل خير / تاجر</option>
@@ -464,28 +489,28 @@
                         </div>
                         <div>
                             <label for="org-email" class="block text-sm font-medium text-gray-700">البريد الإلكتروني للمسؤول</label>
-                            <input type="email" id="org-email" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="email" id="org-email" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                         </div>
                         <div>
                             <label for="org-phone" class="block text-sm font-medium text-gray-700">رقم الجوال</label>
-                            <input type="tel" id="org-phone" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="tel" id="org-phone" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                         </div>
-                        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform active:scale-95">تسجيل</button>
+                        <button type="submit" class="w-full bg-wesal-blue text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform active:scale-95">تسجيل</button>
                     </form>
                     
-                    <div class="bg-blue-50 p-6 rounded-lg">
+                    <div class="bg-wesal-blue-50 p-6 rounded-lg">
                         <h3 class="text-xl font-semibold mb-4">مميزات بوابة المانحين</h3>
                         <ul class="space-y-4">
                             <li class="flex items-start">
-                                <svg class="w-6 h-6 text-blue-600 me-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <svg class="w-6 h-6 text-wesal-blue me-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                 <span><strong>الحوكمة والشفافية:</strong> ضمان إدارة تمويل المشاريع وفق لوائح واضحة.</span>
                             </li>
                             <li class="flex items-start">
-                                <svg class="w-6 h-6 text-blue-600 me-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <svg class="w-6 h-6 text-wesal-blue me-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                 <span><strong>الأثر القابل للقياس:</strong> تقارير دورية ومفصّلة حول العائد الاجتماعي (SROI).</span>
                             </li>
                             <li class="flex items-start">
-                                <svg class="w-6 h-6 text-blue-600 me-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <svg class="w-6 h-6 text-wesal-blue me-2 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                 <span><strong>الربط والتكامل:</strong> التحقق من المستفيدين عبر الربط المباشر مع منصات تكافل الحكومية.</span>
                             </li>
                         </ul>
@@ -503,41 +528,41 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="init-name" class="block text-sm font-medium text-gray-700">اسم المشروع / المبادرة</label>
-                            <input type="text" id="init-name" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="text" id="init-name" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                         </div>
                         <div>
                             <label for="init-type" class="block text-sm font-medium text-gray-700">نوع المشروع (تمكين اقتصادي، صحي، سكني...)</label>
-                            <input type="text" id="init-type" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="text" id="init-type" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                         </div>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="init-target" class="block text-sm font-medium text-gray-700">الفئة المستهدفة</label>
-                            <input type="text" id="init-target" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="text" id="init-target" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                         </div>
                         <div>
                             <label for="init-location" class="block text-sm font-medium text-gray-700">المدينة / الحي المقترح (بيانات مرسام)</label>
-                            <input type="text" id="init-location" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="text" id="init-location" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                         </div>
                     </div>
 
                     <div>
                         <label for="init-implementer" class="block text-sm font-medium text-gray-700">الجهة المقترحة للتنفيذ (جمعية خيرية، متطوعين..)</label>
-                        <input type="text" id="init-implementer" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <input type="text" id="init-implementer" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                     </div>
                     
                     <div>
                         <label for="init-impact" class="block text-sm font-medium text-gray-700">ملخص الأثر المتوقع ونوع التدخل</label>
-                        <textarea id="init-impact" rows="4" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        <textarea id="init-impact" rows="4" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue"></textarea>
                     </div>
 
                     <div>
                         <label for="init-cost" class="block text-sm font-medium text-gray-700">التكلفة التقديرية (ريال)</label>
-                        <input type="number" id="init-cost" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <input type="number" id="init-cost" class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-wesal-blue">
                     </div>
 
-                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform active:scale-95">تقديم المبادرة</button>
+                    <button type="submit" class="w-full bg-wesal-blue text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform active:scale-95">تقديم المبادرة</button>
                 </form>
             </div>
         </section>
@@ -548,11 +573,11 @@
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 mb-8">
                 <div class="bg-white p-6 rounded-2xl shadow-lg">
                     <div class="text-gray-500 mb-1 text-sm">المشاريع المنفذة (الهدف السنوي)</div>
-                    <div class="text-3xl font-bold text-blue-600">≥ 150</div>
+                    <div class="text-3xl font-bold text-wesal-blue">≥ 150</div>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-lg">
                     <div class="text-gray-500 mb-1 text-sm">نسبة الشفافية والحوكمة (KPI)</div>
-                    <div class="text-3xl font-bold text-green-600">100%</div>
+                    <div class="text-3xl font-bold text-wesal-green-light">100%</div>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-lg">
                     <div class="text-gray-500 mb-1 text-sm">رضا المانحين والمستفيدين (KPI)</div>
@@ -577,29 +602,29 @@
                     <div class="space-y-4">
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-blue-700">سكني (جودة السكن)</span>
-                                <span class="text-sm font-medium text-blue-700">40%</span>
+                                <span class="text-sm font-medium text-wesal-blue">سكني (جودة السكن)</span>
+                                <span class="text-sm font-medium text-wesal-blue">40%</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 40%"></div>
+                                <div class="bg-wesal-blue h-2.5 rounded-full" style="width: 40%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-green-700">تمكين اقتصادي</span>
-                                <span class="text-sm font-medium text-green-700">25%</span>
+                                <span class="text-sm font-medium text-wesal-green-dark">تمكين اقتصادي</span>
+                                <span class="text-sm font-medium text-wesal-green-dark">25%</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-green-600 h-2.5 rounded-full" style="width: 25%"></div>
+                                <div class="bg-wesal-green-dark h-2.5 rounded-full" style="width: 25%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-red-700">صحي (وقائي وعلاجي)</span>
-                                <span class="text-sm font-medium text-red-700">20%</span>
+                                <span class="text-sm font-medium text-wesal-red">صحي (وقائي وعلاجي)</span>
+                                <span class="text-sm font-medium text-wesal-red">20%</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-red-600 h-2.5 rounded-full" style="width: 20%"></div>
+                                <div class="bg-wesal-red h-2.5 rounded-full" style="width: 20%"></div>
                             </div>
                         </div>
                         <div>
@@ -632,15 +657,15 @@
                                     <td class="py-3 px-4 text-sm">شركة العطاء للتطوير</td>
                                     <td class="py-3 px-4 text-sm">جهة مانحة</td>
                                     <td class="py-3 px-4 text-sm">تأهيل منازل كبار السن</td>
-                                    <td class="py-3 px-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">نشط</span></td>
-                                    <td class="py-3 px-4"><button class="text-blue-600 hover:underline transition duration-300 transform active:scale-95">عرض الميثاق</button></td>
+                                    <td class="py-3 px-4"><span class="bg-wesal-green-light-50 text-wesal-green-dark px-3 py-1 rounded-full text-xs font-medium">نشط</span></td>
+                                    <td class="py-3 px-4"><button class="text-wesal-blue hover:underline transition duration-300 transform active:scale-95">عرض الميثاق</button></td>
                                 </tr>
                                 <tr class="border-b hover:bg-gray-50">
                                     <td class="py-3 px-4 text-sm">مبادرة "دفء الشتاء"</td>
                                     <td class="py-3 px-4 text-sm">مبادرة مجتمعية</td>
                                     <td class="py-3 px-4 text-sm">-</td>
-                                    <td class="py-3 px-4"><span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-medium">قيد المراجعة</span></td>
-                                    <td class="py-3 px-4"><button class="text-blue-600 hover:underline transition duration-300 transform active:scale-95">مراجعة</button></td>
+                                    <td class="py-3 px-4"><span class="bg-yellow-100 text-wesal-orange px-3 py-1 rounded-full text-xs font-medium">قيد المراجعة</span></td>
+                                    <td class="py-3 px-4"><button class="text-wesal-blue hover:underline transition duration-300 transform active:scale-95">مراجعة</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -721,14 +746,14 @@
 
                 <div class="pt-6">
                     <label class="flex items-center">
-                        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded me-2">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-wesal-blue rounded me-2">
                         <span class="text-gray-800">أقر وأتعهد بالاطلاع على كامل بنود الميثاق والموافقة عليها.</span>
                     </label>
                 </div>
                 
                 <div class="flex justify-end gap-4 mt-8">
                     <button id="close-charter-button-2" class="text-gray-600 bg-gray-100 px-6 py-2 rounded-lg hover:bg-gray-200 transition duration-300 transform active:scale-95">إغلاق</button>
-                    <button class="text-white bg-blue-600 px-6 py-2 rounded-lg hover:bg-blue-700 font-semibold transition duration-300 transform active:scale-95">توقيع الميثاق والاعتماد</button>
+                    <button class="text-white bg-wesal-blue px-6 py-2 rounded-lg hover:bg-blue-700 font-semibold transition duration-300 transform active:scale-95">توقيع الميثاق والاعتماد</button>
                 </div>
             </div>
         </div>
@@ -737,7 +762,7 @@
     <div id="support-modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-8 max-h-screen overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-blue-700">دعم مشروع: <span class="modal-project-name"></span></h2>
+                <h2 class="text-2xl font-bold text-wesal-blue">دعم مشروع: <span class="modal-project-name"></span></h2>
                 <button class="text-gray-500 hover:text-gray-800 text-3xl close-support-modal">&times;</button>
             </div>
             <div class="space-y-4 text-gray-700">
@@ -745,7 +770,7 @@
                 
                 <h4 class="font-semibold pt-4">طرق الدعم المتاحة:</h4>
                 <div class="space-y-3">
-                    <button class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300 transform active:scale-95" id="open-charter-from-support">
+                    <button class="w-full bg-wesal-blue text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300 transform active:scale-95" id="open-charter-from-support">
                         💰 تمويل المشروع بالكامل (وتوقيع الميثاق)
                     </button>
                     <button class="w-full bg-gray-200 text-gray-800 font-semibold py-3 rounded-lg hover:bg-gray-300 transition duration-300 transform active:scale-95" disabled>
@@ -778,97 +803,118 @@
                 'أبها': {
                     families: '422,243', projectsDone: 139, sroi: '3.0x', contributions: '3,500,000 ريال',
                     donors: [{ name: 'الوقف الخيري (أ)', logo: 'https://placehold.co/40x40/purple/white?text=ش7' }],
-                    needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-red-600', colorClass: 'border-red-600', pinClass: 'need-high',
+                    needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-wesal-red', colorClass: 'border-wesal-red', pinClass: 'need-high',
                     healthCenters: 139
                 },
                 'خميس مشيط': {
                     families: '601,305', projectsDone: 133, sroi: '2.5x', contributions: '2,200,000 ريال',
                     donors: [{ name: 'مؤسسة البناء الخيري', logo: 'https://placehold.co/40x40/green/white?text=ش2' }],
-                    needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-red-600', colorClass: 'border-red-600', pinClass: 'need-high',
+                    needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-wesal-red', colorClass: 'border-wesal-red', pinClass: 'need-high',
                     healthCenters: 133
                 },
                 'تثليث': {
                     families: '36,451', projectsDone: 20, sroi: '1.9x', contributions: '250,000 ريال',
-                    donors: [], needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-red-600', colorClass: 'border-red-600', pinClass: 'need-high',
+                    donors: [], needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-wesal-red', colorClass: 'border-wesal-red', pinClass: 'need-high',
                     healthCenters: 20
                 },
                 'أحد رفيدة': {
                     families: '107,894', projectsDone: 16, sroi: '1.9x', contributions: '750,000 ريال',
                     donors: [{ name: 'تاجر الخير', logo: 'https://placehold.co/40x40/red/white?text=ش3' }],
-                    needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-amber-600', colorClass: 'border-amber-600', pinClass: 'need-medium',
+                    // تم تطبيق اللون البني/البرتقالي الجديد: wesal-orange
+                    needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-wesal-orange', colorClass: 'border-wesal-orange', pinClass: 'need-medium',
                     healthCenters: 16
                 },
                 'بيشة': {
                     families: '202,096', projectsDone: 68, sroi: '2.1x', contributions: '600,000 ريال',
                     donors: [{ name: 'فاعل خير', logo: 'https://placehold.co/40x40/gray/white?text=خ' }],
-                    needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-green-600', colorClass: 'border-green-600', pinClass: 'need-low',
+                    // تم تطبيق الأخضر الفاتح الجديد: wesal-green-light
+                    needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-wesal-green-dark', colorClass: 'border-wesal-green-light', pinClass: 'need-low',
                     healthCenters: 68
                 },
                 'النماص': {
                     families: '38,409', projectsDone: 19, sroi: '2.4x', contributions: '300,000 ريال',
-                    donors: [], needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-amber-600', colorClass: 'border-amber-600', pinClass: 'need-medium',
+                    donors: [], 
+                    // تم تطبيق اللون البني/البرتقالي الجديد: wesal-orange
+                    needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-wesal-orange', colorClass: 'border-wesal-orange', pinClass: 'need-medium',
                     healthCenters: 19
                 },
                  'رجال ألمع': {
                     families: '50,825', projectsDone: 27, sroi: '2.8x', contributions: '450,000 ريال',
                     donors: [{ name: 'شركة X للتنمية', logo: 'https://placehold.co/40x40/blue/white?text=ش5' }],
-                    needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-red-600', colorClass: 'border-red-600', pinClass: 'need-high',
+                    needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-wesal-red', colorClass: 'border-wesal-red', pinClass: 'need-high',
                     healthCenters: 27
                 },
                 'محايل عسير': {
                     families: '230,537', projectsDone: 43, sroi: '2.6x', contributions: '1,800,000 ريال',
                     donors: [{ name: 'مجموعة Y الخيرية', logo: 'https://placehold.co/40x40/blue/white?text=ش6' }],
-                    needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-amber-600', colorClass: 'border-amber-600', pinClass: 'need-medium',
+                    // تم تطبيق اللون البني/البرتقالي الجديد: wesal-orange
+                    needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-wesal-orange', colorClass: 'border-wesal-orange', pinClass: 'need-medium',
                     healthCenters: 43
                 },
                 'ظهران الجنوب': {
                     families: '32,099', projectsDone: 23, sroi: '2.0x', contributions: '300,000 ريال',
-                    donors: [], needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-red-600', colorClass: 'border-red-600', pinClass: 'need-high',
+                    donors: [], needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-wesal-red', colorClass: 'border-wesal-red', pinClass: 'need-high',
                     healthCenters: 23
                 },
                 'بارق': {
                     families: '44,880', projectsDone: 12, sroi: '1.8x', contributions: '200,000 ريال',
-                    donors: [], needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-green-600', colorClass: 'border-green-600', pinClass: 'need-low',
+                    donors: [], 
+                    // تم تطبيق الأخضر الفاتح الجديد: wesal-green-light
+                    needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-wesal-green-dark', colorClass: 'border-wesal-green-light', pinClass: 'need-low',
                     healthCenters: 12
                 },
                 'تنومة': {
                     families: '17,756', projectsDone: 11, sroi: '2.2x', contributions: '200,000 ريال',
-                    donors: [], needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-amber-600', colorClass: 'border-amber-600', pinClass: 'need-medium',
+                    donors: [], 
+                    // تم تطبيق اللون البني/البرتقالي الجديد: wesal-orange
+                    needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-wesal-orange', colorClass: 'border-wesal-orange', pinClass: 'need-medium',
                     healthCenters: 11
                 },
                  'المجاردة': {
                     families: '48,302', projectsDone: 13, sroi: '1.7x', contributions: '150,000 ريال',
-                    donors: [], needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-green-600', colorClass: 'border-green-600', pinClass: 'need-low',
+                    donors: [], 
+                    // تم تطبيق الأخضر الفاتح الجديد: wesal-green-light
+                    needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-wesal-green-dark', colorClass: 'border-wesal-green-light', pinClass: 'need-low',
                     healthCenters: 13
                 },
                 'البرك': {
                     families: '22,583', projectsDone: 7, sroi: '1.5x', contributions: '100,000 ريال',
-                    donors: [], needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-green-600', colorClass: 'border-green-600', pinClass: 'need-low',
+                    donors: [], 
+                    // تم تطبيق الأخضر الفاتح الجديد: wesal-green-light
+                    needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-wesal-green-dark', colorClass: 'border-wesal-green-light', pinClass: 'need-low',
                     healthCenters: 7
                 },
                 'الأمواه': {
                     families: '10,969', projectsDone: 4, sroi: '1.2x', contributions: '50,000 ريال',
-                    donors: [], needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-green-600', colorClass: 'border-green-600', pinClass: 'need-low',
+                    donors: [], 
+                    // تم تطبيق الأخضر الفاتح الجديد: wesal-green-light
+                    needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-wesal-green-dark', colorClass: 'border-wesal-green-light', pinClass: 'need-low',
                     healthCenters: 4
                 },
                 'طريب': {
                     families: '22,298', projectsDone: 13, sroi: '1.8x', contributions: '120,000 ريال',
-                    donors: [], needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-amber-600', colorClass: 'border-amber-600', pinClass: 'need-medium',
+                    donors: [], 
+                    // تم تطبيق اللون البني/البرتقالي الجديد: wesal-orange
+                    needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-wesal-orange', colorClass: 'border-wesal-orange', pinClass: 'need-medium',
                     healthCenters: 13
                 },
                 'بلقرن': {
                     families: '60,012', projectsDone: 22, sroi: '2.0x', contributions: '350,000 ريال',
-                    donors: [], needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-amber-600', colorClass: 'border-amber-600', pinClass: 'need-medium',
+                    donors: [], 
+                    // تم تطبيق اللون البني/البرتقالي الجديد: wesal-orange
+                    needLevel: 'احتياج متوسط (أولوية ثانوية)', needColor: 'text-wesal-orange', colorClass: 'border-wesal-orange', pinClass: 'need-medium',
                     healthCenters: 22
                 },
                 'سراة عبيدة': {
                     families: '44,950', projectsDone: 18, sroi: '2.3x', contributions: '400,000 ريال',
-                    donors: [], needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-red-600', colorClass: 'border-red-600', pinClass: 'need-high',
+                    donors: [], needLevel: 'احتياج عالٍ (أولوية قصوى)', needColor: 'text-wesal-red', colorClass: 'border-wesal-red', pinClass: 'need-high',
                     healthCenters: 18
                 },
                 'الحرجة': { // بيانات الحرجة (المنطقة المجاورة لظهران الجنوب)
                     families: '25,100', projectsDone: 10, sroi: '1.7x', contributions: '180,000 ريال',
-                    donors: [], needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-green-600', colorClass: 'border-green-600', pinClass: 'need-low',
+                    donors: [], 
+                    // تم تطبيق الأخضر الفاتح الجديد: wesal-green-light
+                    needLevel: 'احتياج منخفض (اكتفاء ذاتي)', needColor: 'text-wesal-green-dark', colorClass: 'border-wesal-green-light', pinClass: 'need-low',
                     healthCenters: 10
                 }
             };
@@ -886,10 +932,11 @@
                 navLinks.forEach(link => {
                     const targetLink = link.getAttribute('data-target');
                     if (targetLink === targetId) {
-                        link.classList.add('text-blue-600', 'font-bold', 'active-link');
+                        // تم تعديل اللون النشط إلى wesal-blue
+                        link.classList.add('text-wesal-blue', 'font-bold', 'active-link');
                         link.classList.remove('text-gray-600', 'font-medium');
                     } else {
-                        link.classList.remove('text-blue-600', 'font-bold', 'active-link');
+                        link.classList.remove('text-wesal-blue', 'font-bold', 'active-link');
                         link.classList.add('text-gray-600', 'font-medium');
                     }
                 });
@@ -935,7 +982,7 @@
                 
                 if (data) {
                     // تحديث عنوان البطاقة ولون الحدود
-                    mapRegionDataCard.classList.remove('border-blue-600', 'border-red-600', 'border-amber-600', 'border-green-600');
+                    mapRegionDataCard.classList.remove('border-wesal-blue', 'border-wesal-red', 'border-wesal-orange', 'border-wesal-green-light');
                     mapRegionDataCard.classList.add(data.colorClass);
 
                     mapRegionNameEl.innerHTML = `
@@ -945,13 +992,13 @@
                     
                     // تحديث الإحصائيات
                     regionStatsContainer.innerHTML = `
-                        <div class="bg-blue-50 p-3 rounded-lg border-s-4 border-blue-400">
+                        <div class="bg-wesal-blue-50 p-3 rounded-lg border-s-4 border-wesal-blue">
                             <div class="text-xs text-gray-500">الأسر/السكان المستفيدين</div>
-                            <div class="font-bold text-lg text-blue-600">${data.families}</div>
+                            <div class="font-bold text-lg text-wesal-blue">${data.families}</div>
                         </div>
-                        <div class="bg-green-50 p-3 rounded-lg border-s-4 border-green-400">
+                        <div class="bg-wesal-green-light-50 p-3 rounded-lg border-s-4 border-wesal-green-light">
                             <div class="text-xs text-gray-500">المنشآت الصحية (المستهدف)</div>
-                            <div class="font-bold text-lg text-green-600">${data.healthCenters}+</div>
+                            <div class="font-bold text-lg text-wesal-green-dark">${data.healthCenters}+</div>
                         </div>
                         <div class="bg-purple-50 p-3 rounded-lg border-s-4 border-purple-400">
                             <div class="text-xs text-gray-500">العائد الاجتماعي (SROI)</div>
@@ -987,8 +1034,8 @@
                 } else {
                     // حالة عدم العثور على بيانات
                     mapRegionNameEl.innerHTML = defaultContent;
-                    mapRegionDataCard.classList.remove('border-red-600', 'border-amber-600', 'border-green-600');
-                    mapRegionDataCard.classList.add('border-blue-600');
+                    mapRegionDataCard.classList.remove('border-wesal-red', 'border-wesal-orange', 'border-wesal-green-light');
+                    mapRegionDataCard.classList.add('border-wesal-blue');
                     regionStatsContainer.classList.add('hidden');
                     regionDonorsContainer.classList.add('hidden');
                     supportRegionBtn.classList.add('hidden');
@@ -1156,5 +1203,3 @@
     </script>
 </body>
 </html>
-
-
